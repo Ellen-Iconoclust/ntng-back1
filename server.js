@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -9,7 +10,9 @@ const port = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public')); // Serve static files from public directory
+
+// Serve static files from the current directory
+app.use(express.static(path.join(__dirname)));
 
 // PostgreSQL connection pool
 const pool = new Pool({
@@ -214,14 +217,24 @@ app.get('/api/game-scores', async (req, res) => {
     }
 });
 
-// Serve index.html for all other routes (for SPA)
+// Serve the main HTML file for all routes
 app.get('*', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Start server
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`Server running on port ${port}`);
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+});
+
+// Handle graceful shutdown
+process.on('SIGTERM', () => {
+    console.log('SIGTERM signal received: closing HTTP server');
+    server.close(() => {
+        console.log('HTTP server closed');
+        pool.end();
+    });
 });
 
 module.exports = app;
