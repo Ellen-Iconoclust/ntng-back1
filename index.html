@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nothing Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 min-h-screen text-white">
+    <!-- Background Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-1/4 left-1/4 w-20 h-20 bg-pink-500 rounded-full opacity-20 animate-float"></div>
+        <div class="absolute top-1/3 right-1/4 w-16 h-16 bg-cyan-400 rounded-full opacity-30 animate-float" style="animation-delay: -2s;"></div>
+        <div class="absolute bottom-1/4 left-1/3 w-24 h-24 bg-yellow-400 rounded-full opacity-20 animate-float" style="animation-delay: -4s;"></div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8 relative z-10">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-6xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent mb-4">
+                Absolutely Nothing
+            </h1>
+            <p class="text-xl text-gray-300">A website that does... well, nothing special</p>
+        </div>
+
+        <!-- Auth Container -->
+        <div id="auth-container" class="max-w-md mx-auto">
+            <!-- Login Form -->
+            <div id="login-form" class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white/20">
+                <h2 class="text-3xl font-bold text-center mb-8 text-cyan-300">Login</h2>
+                
+                <div class="mb-6">
+                    <label class="block text-gray-300 mb-2">Email</label>
+                    <input type="email" id="login-email" 
+                           class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 transition-all"
+                           placeholder="Enter your email">
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-gray-300 mb-2">Password</label>
+                    <input type="password" id="login-password" 
+                           class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 transition-all"
+                           placeholder="Enter your password">
+                </div>
+                
+                <button id="login-btn" 
+                        class="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:-translate-y-1">
+                    Login
+                </button>
+                
+                <div class="text-center mt-6 text-gray-300">
+                    Don't have an account? 
+                    <a href="#" id="show-register" class="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">Register</a>
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <div id="register-form" class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white/20 hidden">
+                <h2 class="text-3xl font-bold text-center mb-8 text-pink-300">Register</h2>
+                
+                <div class="mb-6">
+                    <label class="block text-gray-300 mb-2">Username</label>
+                    <input type="text" id="register-username" 
+                           class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-pink-400 transition-all"
+                           placeholder="Choose a username">
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-gray-300 mb-2">Email</label>
+                    <input type="email" id="register-email" 
+                           class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-pink-400 transition-all"
+                           placeholder="Enter your email">
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-gray-300 mb-2">Password</label>
+                    <input type="password" id="register-password" 
+                           class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-pink-400 transition-all"
+                           placeholder="Create a password">
+                </div>
+                
+                <button id="register-btn" 
+                        class="w-full bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-pink-500/25 transition-all duration-300 transform hover:-translate-y-1">
+                    Register
+                </button>
+                
+                <div class="text-center mt-6 text-gray-300">
+                    Already have an account? 
+                    <a href="#" id="show-login" class="text-pink-400 hover:text-pink-300 font-semibold transition-colors">Login</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="main-content" class="hidden">
+            <!-- Welcome Section -->
+            <div class="text-center mb-12">
+                <h2 id="welcome-message" class="text-4xl font-bold text-cyan-300 mb-4">Welcome, User!</h2>
+                <p class="text-xl text-gray-300">Enjoy your stay on this website that does absolutely nothing!</p>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:border-cyan-400/50 transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-cyan-400 text-center mb-4">
+                        <i class="fas fa-magic text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3 text-cyan-300">Cool UI Effects</h3>
+                    <p class="text-gray-300 text-center">Hover over elements to see smooth animations and glassmorphism effects.</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:border-pink-400/50 transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-pink-400 text-center mb-4">
+                        <i class="fas fa-gamepad text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3 text-pink-300">Simple Minigames</h3>
+                    <p class="text-gray-300 text-center">Play casual minigames to pass the time. Nothing complicated!</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:border-purple-400/50 transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-purple-400 text-center mb-4">
+                        <i class="fas fa-database text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3 text-purple-300">PostgreSQL Database</h3>
+                    <p class="text-gray-300 text-center">Your data is securely stored in Neon PostgreSQL database.</p>
+                </div>
+            </div>
+
+            <!-- User Stats -->
+            <div id="user-stats" class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 mb-8 hidden">
+                <h2 class="text-3xl font-bold text-center mb-6 text-yellow-300">Your Stats</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-cyan-300" id="total-games">0</div>
+                        <div class="text-gray-300">Total Games Played</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-pink-300" id="best-clicker">0</div>
+                        <div class="text-gray-300">Best Clicker Score</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-purple-300" id="best-memory">0</div>
+                        <div class="text-gray-300">Best Memory Moves</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Minigames Section -->
+            <div class="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                <h2 class="text-3xl font-bold text-center mb-8 text-yellow-300">Minigames</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Color Changer Game -->
+                    <div class="bg-white/10 rounded-xl p-6 border border-white/20">
+                        <h3 class="text-xl font-bold mb-4 text-cyan-300">Color Changer</h3>
+                        <p class="text-gray-300 mb-4">Click the box to change its color randomly</p>
+                        <div id="color-box" class="w-full h-32 rounded-lg mb-4 bg-cyan-500 cursor-pointer transition-all duration-300 hover:scale-105"></div>
+                        <button id="color-reset" class="w-full bg-gray-600 hover:bg-gray-700 text-white py-2 rounded-lg transition-colors">
+                            Reset Color
+                        </button>
+                    </div>
+
+                    <!-- Clicker Game -->
+                    <div class="bg-white/10 rounded-xl p-6 border border-white/20">
+                        <h3 class="text-xl font-bold mb-4 text-pink-300">Clicker Game</h3>
+                        <p class="text-gray-300 mb-4">Click as many times as you can in 10 seconds!</p>
+                        <div id="clicker-button" class="w-24 h-24 mx-auto bg-gradient-to-br from-pink-500 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 cursor-pointer shadow-lg hover:shadow-pink-500/25 transition-all active:scale-95">
+                            0
+                        </div>
+                        <p id="clicker-timer" class="text-center text-gray-300 mb-4">Time: 10s</p>
+                        <button id="clicker-start" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition-colors">
+                            Start Game
+                        </button>
+                    </div>
+
+                    <!-- Memory Game -->
+                    <div class="bg-white/10 rounded-xl p-6 border border-white/20">
+                        <h3 class="text-xl font-bold mb-4 text-purple-300">Memory Game</h3>
+                        <p class="text-gray-300 mb-4">Find matching pairs of cards</p>
+                        <div id="memory-game" class="grid grid-cols-3 gap-2 mb-4"></div>
+                        <button id="memory-reset" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg transition-colors">
+                            Reset Game
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logout Button -->
+            <div class="text-center mt-8">
+                <button id="logout-btn" class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-xl font-semibold transition-colors transform hover:scale-105">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Toast -->
+    <div id="message-toast" class="fixed top-4 right-4 max-w-sm hidden">
+        <div class="bg-gray-800 border-l-4 rounded-lg shadow-lg p-4">
+            <div class="flex items-center">
+                <div id="toast-icon" class="text-lg mr-3"></div>
+                <div id="toast-message" class="text-white"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API Base URL - This will be set by Vercel environment or use relative path
+        const API_BASE_URL = '/api' 
+
+        // DOM Elements
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const showRegister = document.getElementById('show-register');
+        const showLogin = document.getElementById('show-login');
+        const loginBtn = document.getElementById('login-btn');
+        const registerBtn = document.getElementById('register-btn');
+        const authContainer = document.getElementById('auth-container');
+        const mainContent = document.getElementById('main-content');
+        const welcomeMessage = document.getElementById('welcome-message');
+        const logoutBtn = document.getElementById('logout-btn');
+        const userStats = document.getElementById('user-stats');
+
+        // Current user state
+        let currentUser = null;
+
+        // Form Toggle
+        showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginForm.classList.add('hidden');
+            registerForm.classList.remove('hidden');
+        });
+
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerForm.classList.add('hidden');
+            loginForm.classList.remove('hidden');
+        });
+
+        // Register Function
+        registerBtn.addEventListener('click', async () => {
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const username = document.getElementById('register-username').value;
+
+            if (!email || !password || !username) {
+                showMessage('Please fill in all fields', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username,
+                        email,
+                        password
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Registration failed');
+                }
+
+                showMessage('Registration successful!', 'success');
+                
+                // Switch to login form
+                registerForm.classList.add('hidden');
+                loginForm.classList.remove('hidden');
+                
+                // Clear form
+                document.getElementById('register-email').value = '';
+                document.getElementById('register-password').value = '';
+                document.getElementById('register-username').value = '';
+
+            } catch (error) {
+                console.error('Registration error:', error);
+                showMessage(error.message, 'error');
+            }
+        });
+
+        // Login Function
+        loginBtn.addEventListener('click', async () => {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            if (!email || !password) {
+                showMessage('Please fill in all fields', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email,
+                        password
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Login failed');
+                }
+
+                showMessage('Login successful!', 'success');
+                
+                // Store user data
+                currentUser = data.user;
+                welcomeMessage.textContent = `Welcome, ${currentUser.username}!`;
+                
+                // Show main content
+                authContainer.classList.add('hidden');
+                mainContent.classList.remove('hidden');
+                
+                // Load user stats
+                loadUserStats(currentUser.id);
+
+            } catch (error) {
+                console.error('Login error:', error);
+                showMessage(error.message, 'error');
+            }
+        });
+
+        // Logout Function
+        logoutBtn.addEventListener('click', () => {
+            showMessage('Logged out successfully', 'success');
+            authContainer.classList.remove('hidden');
+            mainContent.classList.add('hidden');
+            userStats.classList.add('hidden');
+            
+            // Clear current user
+            currentUser = null;
+            
+            // Clear form fields
+            document.getElementById('login-email').value = '';
+            document.getElementById('login-password').value = '';
+            document.getElementById('register-email').value = '';
+            document.getElementById('register-password').value = '';
+            document.getElementById('register-username').value = '';
+        });
+
+        // Load user stats
+        async function loadUserStats(userId) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/stats/${userId}`);
+                const data = await response.json();
+
+                if (response.ok && data.stats) {
+                    document.getElementById('total-games').textContent = data.stats.totalGames || 0;
+                    document.getElementById('best-clicker').textContent = data.stats.bestClickerScore || 0;
+                    document.getElementById('best-memory').textContent = data.stats.bestMemoryMoves || 0;
+                    userStats.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        // Save game score
+        async function saveGameScore(gameType, score) {
+            if (!currentUser) return;
+
+            try {
+                await fetch(`${API_BASE_URL}/game-score`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userId: currentUser.id,
+                        gameType,
+                        score
+                    })
+                });
+
+                // Reload stats after saving score
+                loadUserStats(currentUser.id);
+            } catch (error) {
+                console.error('Error saving game score:', error);
+            }
+        }
+
+        // Show Message Function
+        function showMessage(message, type) {
+            const toast = document.getElementById('message-toast');
+            const toastMessage = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMessage.textContent = message;
+            
+            if (type === 'success') {
+                toast.style.borderLeftColor = '#10B981';
+                toastIcon.innerHTML = '<i class="fas fa-check-circle text-green-500"></i>';
+            } else {
+                toast.style.borderLeftColor = '#EF4444';
+                toastIcon.innerHTML = '<i class="fas fa-exclamation-circle text-red-500"></i>';
+            }
+
+            toast.classList.remove('hidden');
+            
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Minigames functionality
+        
+        // Color Changer Game
+        const colorBox = document.getElementById('color-box');
+        const colorReset = document.getElementById('color-reset');
+        
+        colorBox.addEventListener('click', () => {
+            const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+            colorBox.style.background = randomColor;
+        });
+        
+        colorReset.addEventListener('click', () => {
+            colorBox.style.background = '#06b6d4'; // cyan-500
+        });
+
+        // Clicker Game
+        const clickerButton = document.getElementById('clicker-button');
+        const clickerStart = document.getElementById('clicker-start');
+        const clickerTimer = document.getElementById('clicker-timer');
+        
+        let clickCount = 0;
+        let gameActive = false;
+        let timeLeft = 10;
+        
+        clickerStart.addEventListener('click', () => {
+            if (gameActive) return;
+            
+            clickCount = 0;
+            gameActive = true;
+            timeLeft = 10;
+            clickerButton.textContent = clickCount;
+            clickerTimer.textContent = `Time: ${timeLeft}s`;
+            clickerStart.disabled = true;
+            clickerStart.textContent = 'Playing...';
+            
+            const gameInterval = setInterval(() => {
+                timeLeft--;
+                clickerTimer.textContent = `Time: ${timeLeft}s`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(gameInterval);
+                    gameActive = false;
+                    clickerStart.disabled = false;
+                    clickerStart.textContent = 'Start Game';
+                    clickerTimer.textContent = `Game Over! Score: ${clickCount}`;
+                    
+                    // Save score to database
+                    saveGameScore('clicker', clickCount);
+                }
+            }, 1000);
+        });
+        
+        clickerButton.addEventListener('click', () => {
+            if (gameActive) {
+                clickCount++;
+                clickerButton.textContent = clickCount;
+            }
+        });
+
+        // Memory Game
+        const memoryGame = document.getElementById('memory-game');
+        const memoryReset = document.getElementById('memory-reset');
+        
+        const memoryCards = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E'];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let memoryMoves = 0;
+        
+        function initializeMemoryGame() {
+            memoryGame.innerHTML = '';
+            flippedCards = [];
+            matchedPairs = 0;
+            memoryMoves = 0;
+            
+            const shuffledCards = [...memoryCards].sort(() => Math.random() - 0.5);
+            
+            shuffledCards.forEach((card, index) => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'memory-card bg-cyan-500 rounded-lg flex items-center justify-center text-white font-bold cursor-pointer transition-all duration-300 hover:bg-cyan-600 h-16';
+                cardElement.textContent = '?';
+                cardElement.dataset.value = card;
+                cardElement.dataset.index = index;
+                
+                cardElement.addEventListener('click', () => flipCard(cardElement));
+                
+                memoryGame.appendChild(cardElement);
+            });
+        }
+        
+        function flipCard(card) {
+            if (flippedCards.length < 2 && !card.classList.contains('flipped') && !card.classList.contains('matched')) {
+                card.classList.add('flipped', 'bg-pink-500');
+                card.textContent = card.dataset.value;
+                flippedCards.push(card);
+                memoryMoves++;
+                
+                if (flippedCards.length === 2) {
+                    checkForMatch();
+                }
+            }
+        }
+        
+        function checkForMatch() {
+            const [card1, card2] = flippedCards;
+            
+            if (card1.dataset.value === card2.dataset.value) {
+                card1.classList.add('matched', 'bg-green-500');
+                card2.classList.add('matched', 'bg-green-500');
+                matchedPairs++;
+                
+                if (matchedPairs === memoryCards.length / 2) {
+                    setTimeout(() => {
+                        showMessage(`Congratulations! You won in ${memoryMoves} moves!`, 'success');
+                        // Save score to database
+                        saveGameScore('memory', memoryMoves);
+                    }, 500);
+                }
+                
+                flippedCards = [];
+            } else {
+                setTimeout(() => {
+                    card1.classList.remove('flipped', 'bg-pink-500');
+                    card2.classList.remove('flipped', 'bg-pink-500');
+                    card1.textContent = '?';
+                    card2.textContent = '?';
+                    card1.classList.add('bg-cyan-500');
+                    card2.classList.add('bg-cyan-500');
+                    flippedCards = [];
+                }, 1000);
+            }
+        }
+        
+        memoryReset.addEventListener('click', initializeMemoryGame);
+        initializeMemoryGame();
+
+        // Console helper functions
+        window.viewAllUsers = async function() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/users`);
+                const data = await response.json();
+                console.log('=== ALL USERS ===');
+                console.table(data.users);
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        };
+
+        window.viewGameScores = async function() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/game-scores`);
+                const data = await response.json();
+                console.log('=== GAME SCORES ===');
+                console.table(data.scores);
+            } catch (error) {
+                console.error('Error fetching game scores:', error);
+            }
+        };
+
+        console.log('Application initialized! Use these commands in console:');
+        console.log('viewAllUsers() - View all registered users');
+        console.log('viewGameScores() - View all game scores');
+    </script>
+</body>
+</html>
